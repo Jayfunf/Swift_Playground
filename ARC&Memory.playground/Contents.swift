@@ -21,6 +21,7 @@ var reference2: Human?
 var reference3: Human?
 
 reference1 = Human(name: "Minion", age: 24)
+
 reference2 = reference1
 reference3 = reference1
 

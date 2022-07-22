@@ -65,8 +65,8 @@ class CreditCard {
     }
 }
 
-var Minion: Customer?
+var Jay: Customer?
 
-Minion = Customer(name: "Minion")
-Minion!.card = CreditCard(number: 1234_5678_9012_3456, customer: Minion!)
-Minion = nil
+Jay = Customer(name: "Jay")
+Jay!.card = CreditCard(number: 1234_5678_9012_3456, customer: Jay!)
+Jay = nil

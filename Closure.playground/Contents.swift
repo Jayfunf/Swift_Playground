@@ -146,6 +146,41 @@ fetchWithTrailing(success: { () -> () in
 }
 
 //MARK: 반환 타입 유추, 매개변수 타입 유추
+func someFunc(closure: (String, Int) -> String) {
+    closure("Minion", 24)
+}
+
+someFunc(closure: { (name: String, age: Int) -> String in
+    return "My name is \(name), age is \(age)"
+})
+
+someFunc(closure: { (name, age) in
+    return "My name is \(name), age is \(age)"
+})
 
 //MARK: 매개변수 생략
+someFunc(closure: {
+    return "My name is \($0), age is \($1)"
+})
+
 //MARK: return 키워드 생략
+someFunc(closure: {
+    "My name is \($0), age is \($1)"
+})
+
+//MARK: 축약 최종
+someFunc {
+    "My name is \($0), age is \($1)"
+}
+
+//MARK: 코드 비교
+//기존 코드
+someFunc(closure: { (name: String, age: Int) -> String in
+    return "My name is \(name), age is \(age)"
+})
+//경량 최종 버전
+someFunc {
+    "My name is \($0), age is \($1)"
+}
+
+//MARK: Closure 심화////////////////////////////////////////////////////////

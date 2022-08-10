@@ -1,3 +1,8 @@
+/*
+ Reference by: 개발자 소들이
+ Address: https://babbab2.tistory.com/118
+ */
+
 import UIKit
 
 //MARK: 1 저장 프로퍼티(Stored Properties)

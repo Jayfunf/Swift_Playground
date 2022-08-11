@@ -141,7 +141,6 @@ class withoutStoredP {
 
 class withStoredP {
     var name: String = "다예"
-    
     var alias: String {
         get {
             return self.name + " 바보"
@@ -202,12 +201,61 @@ class getOnlySimple {
 //MARK: 3.3 set-only 연산 프로퍼티?
 //불가능함. 반드시 get과 set을 세트로 구현하거나, get-only로만 구현해야 함.
 
-//MARK: 4 프로퍼티 감시자(Property Observers)
-//MARK: 4.1 willSet
-//MARK: 4.2 didSet
-//MARK: 4.3 willSet과 didSet을 같이 구현
-//MARK: 4.4 연산 프로퍼티도 프로퍼티 옵저버를 추가할 수 있다.
+//MARK: 4 프로퍼티 옵저버(감시자)(Property Observers)
+/*
+ 프로퍼티 옵저버란 프로퍼티를 감시하여 값의 변경 직후 혹은 변경 직전에 값을 알려준다.
+ 프로퍼티 옵저버는 저장 프로퍼티에 사용할 수 있으며, 연산 프로퍼티에는 조건해 해당하면 사용할 수 있다.
+ */
 
+//MARK: 4.1 willSet
+/*
+ willSet은 값이 저장되기 직전에 새로 저장될 값이 호출된다.
+ */
+var willSetName: String = "쫀또" {
+    willSet {
+        print("현재 이름 = \(willSetName) / 바뀔 이름 = \(newValue)")
+    }
+}
+
+willSetName = "바보다예"
+
+//MARK: 4.2 didSet
+/*
+ didSet은 값이 저장된 직후에 이전 프로퍼티의 값이 전달된다.
+ */
+var didSetName: String = "쫀또" {
+    didSet {
+        print("현재 이름 = \(didSetName) / 바뀐 이름 = \(oldValue)")
+    }
+}
+
+didSetName = "바보다예"
+
+//MARK: 4.3 willSet과 didSet을 같이 구현
+var willdidSetName: String = "Init" {
+    willSet {
+        print("현재 이름 = \(willdidSetName) / 바뀔 이름 = \(newValue)")
+    }
+    didSet {
+        print("현재 이름 = \(willdidSetName) / 바뀐 이름 = \(oldValue)")
+    }
+}
+willdidSetName = "다예"
+
+//MARK: 4.4 연산 프로퍼티도 프로퍼티 옵저버를 추가할 수 있다.
+class Dayeah: withStoredP {
+    override var alias: String {
+        willSet {
+            print("Dayeah 현재 이름 = \(alias) / 바뀔 이름 = \(newValue)")
+        }
+        didSet {
+            print("Dayeah 현재 이름 = \(alias) / 바뀐 이름 = \(oldValue)")
+        }
+    }
+}
+
+let dayeah: Dayeah = .init()
+dayeah.alias = "똥뎨"
 
 //MARK: 5 타입 프로퍼티(Type Properties)
 /*
@@ -292,3 +340,4 @@ overClassMinion.alias
  싱글톤은 아래 링크를 참조하자.
  Address: https://babbab2.tistory.com/66?category=828998
  */
+

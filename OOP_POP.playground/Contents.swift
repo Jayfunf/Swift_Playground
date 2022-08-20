@@ -49,10 +49,27 @@ extension FastRun {
     }
 }
 
-class Superman: Power, FastRun {
+protocol sayInfo {
+    func sayinfo(name: String, age: Int)
+}
+
+extension sayInfo {
+    func sayinfo(name: String, age: Int) {
+        print("\(name),\(age)")
+    }
+}
+
+class Superman: Power, FastRun, sayInfo {
+    var name: String = ""
+    var age: Int = 0
     
+    init() {
+        self.name = name
+        self.age = age
+    }
 }
 
 let superman = Superman()
+superman.say
 superman.power()
 superman.fastRun()

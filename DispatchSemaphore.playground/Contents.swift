@@ -27,6 +27,7 @@ DispatchQueue.global().async {
     semaphore2.signal()
 }
 
+// task A 끝날때까지는 value 가 0이라, task A 종료까지 block
 semaphore2.wait()
 sleep(2)
-print("기다림")
+print("task A 완료됨!")

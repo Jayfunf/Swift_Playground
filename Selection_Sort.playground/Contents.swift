@@ -1,7 +1,6 @@
 import UIKit
 
 var arr: [Int] = [7,9,2,5,6,1]
-var tmp: Int = 0
 
 func selection_Sort(_ arr: inout [Int]){
     var min: Int = arr.count-1 // 최소값을 찾기 위해 선언
@@ -12,9 +11,7 @@ func selection_Sort(_ arr: inout [Int]){
                 min = j
             }
         }
-        tmp = arr[i]
-        arr[i] = arr[min]
-        arr[min] = tmp
+        arr.swapAt(i, min)
     }
     
     print(arr)

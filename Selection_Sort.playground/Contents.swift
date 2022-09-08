@@ -13,7 +13,6 @@ func selection_Sort(_ arr: inout [Int]){
         }
         arr.swapAt(i, min)
     }
-    
     print(arr)
 }
 

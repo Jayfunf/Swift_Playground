@@ -26,47 +26,51 @@ let adjacencyList:[Int: [Int]] = [ // Adjacency List structed by Dictionary
 
 var recul_Matrix = Array.init(repeating: false, count: adjacencyMatrix.count)
 var recul_List = Array.init(repeating: false, count: adjacencyList.count)
+func reculsiveDFS(_ startNode: Int) {
+    print(startNode, terminator: " ")
 
-func reculsiveDFS(_ startNode: Int) { // Complete
-    //recul_Matrix[startNode] = true // Matrix
-    recul_List[startNode] = true // List
-    
-    //print(startNode, terminator: " ")
-    
+//    recul_Matrix[startNode] = true // Matrix
 //    for i in adjacencyMatrix[startNode] { // Matrix
 //        if !recul_Matrix[i] {
 //            reculsiveDFS(i)
 //        }
 //    }
-    
+
+    recul_List[startNode] = true // List
     for i in adjacencyList[startNode]! { // List
-        print("List: ", adjacencyList[startNode]!)
-        print("stratNode: ", startNode)
-        print("i: ", i)
-        print("recul_List[i]: ", !recul_List[i])
         if !recul_List[i] { // false이면 동작
-            print("reculsive")
             reculsiveDFS(i)
         }
     }
 } // 1 2 4 5 3 6 7 8
-
 reculsiveDFS(1)
 
 func normalDFS(graph: [Int: [Int]], start: Int) -> [Int] {
     var visitedQueue: [Int] = []
     var needVisitStack: [Int] = [start]
-    
+
     while !needVisitStack.isEmpty {
         let node: Int = needVisitStack.removeLast()
         if visitedQueue.contains(node) { continue }
-        
+
         visitedQueue.append(node)
         needVisitStack += graph[node] ?? []
     }
     return visitedQueue
 } // [1, 3, 7, 8, 6, 2, 5, 4]
-
-
-print("\n")
 print(normalDFS(graph: adjacencyList, start: 1))
+
+func normalBFS(graph: [Int: [Int]], start: Int) -> [Int] {
+    var visitedQueue: [Int] = []
+    var needVisitQueue: [Int] = [start]
+    
+    while !needVisitQueue.isEmpty {
+        let node: Int = needVisitQueue.removeFirst()
+        if visitedQueue.contains(node) { continue }
+        
+        visitedQueue.append(node)
+        needVisitQueue += graph[node] ?? []
+    }
+    return visitedQueue
+} // [1, 2, 3, 4, 5, 6, 7, 8]
+print(normalBFS(graph: adjacencyList, start: 1))

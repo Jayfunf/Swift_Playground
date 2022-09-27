@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-MARK: - Serial/Concurrent + Async/Sync
+// MARK: - Serial/Concurrent + Async/Sync
 print("serial+async")
 var numbers1 = [0,1,2,3,4,5,6,7]
 let dispatchQ1 = DispatchQueue(label:"serial") //Custom serial queue

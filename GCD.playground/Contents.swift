@@ -5,9 +5,10 @@ let queueOne = DispatchQueue.global()
 let queueTwo = DispatchQueue.global()
 
 func taskOne() {
-    for _ in 0..<10000 {
+    for _ in 0..<9900 {
         print("TaskOne")
     }
+    print("**************************")
 }
 
 func taskTwo() {
